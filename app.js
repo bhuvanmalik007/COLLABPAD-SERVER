@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
+//var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -47,15 +47,15 @@ io.sockets.on('connection', function(socket){
   connections.push(socket);
   console.log("Connected: " + connections.length + " socket(s) connected");
 
-socket.on('disconnect', function(){   //disconnect is a key word
-    
-    connections.splice(connections.indexOf(socket),1);
-    console.log("Disconnected: " + connections.length + " socket(s) connected");
-  });
-  
-  socket.on('flashsend', function(data){
-    io.sockets.emit('flashget',data);
-  });
+    socket.on('disconnect', function(){   //disconnect is a key word
+
+      connections.splice(connections.indexOf(socket),1);
+      console.log("Disconnected: " + connections.length + " socket(s) connected");
+    });
+
+    socket.on('flashsend', function(data){
+      io.sockets.emit('flashget',data);
+    });
   
 });
   
