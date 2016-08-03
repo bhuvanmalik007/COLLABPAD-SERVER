@@ -38,37 +38,33 @@ app.use(function(req, res, next) {
 
 app.get('/',function(req,res){
 
-  res.send('COLLABPAD');
-
+  //res.sendFile(__dirname+'/views/front/index.html');
+  res.send('collabpad');
 });
 
 
 io.sockets.on('connection', function(socket){
-  var previous,cnt=0;
-  
   
   connections.push(socket);
   console.log("Connected: " + connections.length + " socket(s) connected");
   
   socket.on('getroom',function(roomname){
-    if(cnt==0){
-      cnt++
-      
+
+
+    if(socket.room) {
+      socket.leave(socket.room);
     }
-    else{
+    socket.room = roomname;
+    socket.join(roomname);
+
+
+
     
-      socket.leave(previous);
-      cnt--;
-      
-      
-    }
-    
-    socket.join(roomname); 
-    socket.to(roomname).on('flashsend', function(data){
-      io.sockets.to(roomname).emit('flashget',data);
-      previous=roomname;
-    });
-    
+  });
+
+  socket.on('flashsend', function(data){
+    io.sockets.to(socket.room).emit('flashget',data);
+
   });
   
    socket.on('disconnect', function(){   //disconnect is a key word
