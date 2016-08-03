@@ -44,8 +44,15 @@ app.get('/',function(req,res){
 
 
 io.sockets.on('connection', function(socket){
+  socket.on('getroom',function(roomname){
+    
+    socket.join(roomname);  
+    
+  });
+  
   connections.push(socket);
   console.log("Connected: " + connections.length + " socket(s) connected");
+  
 
     socket.on('disconnect', function(){   //disconnect is a key word
 
