@@ -37,7 +37,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/',function(req,res){
-    res.sendFile(__dirname+'/front/index.html');
+    res.render(__dirname+'/front/index.html');
   //res.send('collabpad');
 });
 
