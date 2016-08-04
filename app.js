@@ -38,8 +38,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/',function(req,res){
-  res.send('yo bro');
-   // res.sendFile(path.join(__dirname,'/public/front/index.html'));
+    res.sendFile(path.join(__dirname,'/public/index.html'));
     //res.sendFile(__dirname,'index.html');
 });
 
