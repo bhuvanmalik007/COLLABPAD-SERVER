@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var gzippo = require('gzippo');
 //var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -20,9 +21,10 @@ var connections=[];
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(gzippo.staticGzip("" + __dirname + "/public"));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,7 +38,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/',function(req,res){
-    res.sendFile(path.join(__dirname, 'public/front/index.html'));
+   // res.sendFile(path.join(__dirname,'/public/front/index.html'));
     //res.sendFile(__dirname,'index.html');
 });
 
