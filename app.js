@@ -37,8 +37,8 @@ app.use(function(req, res, next) {
 });
 
 app.get('/',function(req,res){
-    res.sendFile('/front/index.html');
-  //res.send('collabpad');
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+    //res.sendFile(__dirname,'index.html');
 });
 
 
