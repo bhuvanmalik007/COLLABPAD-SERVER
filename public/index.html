@@ -130,7 +130,7 @@
                 <span class="input-group-addon" id="basic-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
                 <input type="text" class="form-control" v-model='roomname' style="font-family: monospace;font-size: 17px;" placeholder="Enter your shared keystring">
                 <span class="input-group-btn">
-                  <button class="btn btn-success" type="button" v-on:keyup.enter="sendroom" v-on:click="sendroom">Go!</button>
+                  <button class="btn btn-success" type="button" v-on:keyup="send" v-on:keyup.enter="sendroom" v-on:click="sendroom">Go!</button>
                 </span>
               </div><!-- /input-group -->
             </div><!-- /.col-lg-6 -->
@@ -138,7 +138,7 @@
       </div>
       <br>
         <label for="comment">Your real-time notepad:</label>
-        <textarea class="form-control" rows="10" id="comment" v-model="textarea" placeholder="Let's collaborate!"></textarea>
+        <textarea class="form-control" rows="10" id="comment" v-model="textarea" v-on:keyup="send" placeholder="Let's collaborate!"></textarea>
 
       </div>
 </div>

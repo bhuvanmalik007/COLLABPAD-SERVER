@@ -7,36 +7,43 @@ el: 'body',
   data: {
 
     textarea:'',
-    roomname:''
+    roomname:'',
+    cnt:0
 
 
   },
   ready:function(){
     socket.on('flashget' , function(data){
-
-      vm.textarea=data;
+      if(vm.cnt==1){
+        vm.cnt=0;
+      }
+      else{
+        vm.textarea=data; 
+      }
+      
 
 
     });
 },
 
-watch: {
-    'textarea': {
-      handler: function (val, oldVal) {
-         socket.emit('flashsend',val);
-      },
-      deep: true
-    }
-  },
+// watch: {
+//     'textarea': {
+//       handler: function (val, oldVal) {
+//         socket.emit('flashsend',val);
+//         vm.cnt=1;
+//       },
+//       deep: true
+//     }
+//   },
 
   methods:{
-  //   send: function(event){
+    send: function(event){
 
-  //     socket.emit('flashsend',vm.textarea);
+      socket.emit('flashsend',vm.textarea);
+      vm.cnt=1;
+       console.log(vm.textarea);
 
-  //   console.log(vm.textarea);
-
-  //   },
+    },
 
     sendroom: function(event){
 
