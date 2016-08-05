@@ -20,14 +20,23 @@ el: 'body',
     });
 },
 
+watch: {
+    'textarea': {
+      handler: function (val, oldVal) {
+         socket.emit('flashsend',val);
+      },
+      deep: true
+    }
+  },
+
   methods:{
-    send: function(event){
+  //   send: function(event){
 
-      socket.emit('flashsend',vm.textarea);
+  //     socket.emit('flashsend',vm.textarea);
 
-     console.log(vm.textarea);
+  //   console.log(vm.textarea);
 
-    },
+  //   },
 
     sendroom: function(event){
 
