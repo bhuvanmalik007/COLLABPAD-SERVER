@@ -9,21 +9,12 @@ el: 'body',
     textarea:'',
     roomname:'',
     cnt:0,
-    typecnt:0
 
 
   },
   ready:function(){
     socket.on('flashget' , function(data){
-      if(vm.cnt==1){
-        vm.cnt=0;
-      }
-      else{
-        vm.textarea=data; 
-      }
-      
-
-
+        vm.textarea=data;
     });
 },
 
@@ -39,14 +30,9 @@ el: 'body',
 
   methods:{
     send: function(event){
-      vm.typecnt++;
-      if(vm.typecnt==2){
       
       socket.emit('flashsend',vm.textarea);
-      vm.cnt=1;
        console.log(vm.textarea);
-       vm.typecnt=0
-      }
 
     },
 
@@ -62,3 +48,30 @@ el: 'body',
   }
 
 })
+
+//methods:{
+//  send: function(event){
+//    vm.typecnt++;
+//    if(vm.typecnt==2){
+//
+//      socket.emit('flashsend',vm.textarea);
+//      vm.cnt=1;
+//      console.log(vm.textarea);
+//      vm.typecnt=0
+//    }
+//
+//  }
+
+//ready:function(){
+//  socket.on('flashget' , function(data){
+//    if(vm.cnt==1){
+//      vm.cnt=0;
+//    }
+//    else{
+//      vm.textarea=data;
+//    }
+//
+//
+//
+//  });
+//}

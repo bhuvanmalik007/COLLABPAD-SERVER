@@ -62,7 +62,9 @@ io.sockets.on('connection', function(socket){
   });
 
   socket.on('flashsend', function(data){
-    io.sockets.to(socket.room).emit('flashget',data);
+    socket.broadcast.to(socket.room).emit('flashget',data);
+
+   // io.sockets.to(socket.room).emit('flashget',data);
 
   });
   
