@@ -8,7 +8,8 @@ el: 'body',
 
     textarea:'',
     roomname:'',
-    cnt:0
+    cnt:0,
+    typecnt:0
 
 
   },
@@ -38,10 +39,14 @@ el: 'body',
 
   methods:{
     send: function(event){
-
+      vm.typecnt++;
+      if(vm.typecnt==2){
+      
       socket.emit('flashsend',vm.textarea);
       vm.cnt=1;
        console.log(vm.textarea);
+       vm.typecnt=0
+      }
 
     },
 
