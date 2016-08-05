@@ -18,23 +18,22 @@ el: 'body',
     });
 },
 
-// watch: {
-//     'textarea': {
-//       handler: function (val, oldVal) {
-//         socket.emit('flashsend',val);
-//         vm.cnt=1;
-//       },
-//       deep: true
-//     }
-//   },
+ watch: {
+     'textarea': {
+       handler: function (val, oldVal) {
+         socket.emit('flashsend',val);
+       },
+       deep: true
+     }
+   },
 
   methods:{
-    send: function(event){
-      
-      socket.emit('flashsend',vm.textarea);
-       console.log(vm.textarea);
-
-    },
+    //send: function(event){
+    //
+    //  socket.emit('flashsend',vm.textarea);
+    //   console.log(vm.textarea);
+    //
+    //},
 
     sendroom: function(event){
 
